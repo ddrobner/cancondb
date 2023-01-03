@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from taggit.models import Tag
+
 from .forms import ArtistSubmission
 
 # Create your views here.
 def genres(request):
-    return render(request, 'genres.html')
+    tags = list(str(x) for x in Tag.objects.all())
+    print(tags)
+    sorted_tags =  sorted(tags)
+    print(tags)
+    return render(request, 'genres.html', {'tags': sorted_tags})
 
 def submit(request):
     if request.method == 'POST':

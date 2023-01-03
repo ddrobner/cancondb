@@ -1,4 +1,5 @@
 from django.db import models
+from taggit.managers import TaggableManager
 
 # Create your models here.
 class Artist(models.Model):
@@ -12,3 +13,9 @@ class Artist(models.Model):
     # field for who submitted the artist
     # not publically viewable however want to prevent abuse
     submitted_by = models.EmailField(blank=False)
+    # storing genre tags
+    genres = TaggableManager()
+
+    # toString method
+    def __str__(self):
+        return self.name

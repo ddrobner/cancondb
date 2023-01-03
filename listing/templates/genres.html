@@ -4,7 +4,7 @@
 {%block body %}
     <div class="list-group mt-3">
         {% for tag in tags %}
-            <a class="list-group-item list-group-item-action" href="#">{{ tag }}</a>
+            <a class="list-group-item list-group-item-action" href="/genres/{{ tag }}">{{ tag }}</a>
         {% endfor %}
     </div>
 {% endblock body %}

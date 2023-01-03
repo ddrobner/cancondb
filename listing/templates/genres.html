@@ -2,9 +2,9 @@
 
 <!-- Page content-->
 {%block body %}
-    <ul>
+    <div class="list-group mt-3">
         {% for tag in tags %}
-            <li> <a href="#">{{ tag }}</a></li>
+            <a class="list-group-item list-group-item-action" href="#">{{ tag }}</a>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock body %}

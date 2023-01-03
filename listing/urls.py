@@ -6,4 +6,5 @@ from . import views
 urlpatterns = [
     path('submit/', views.submit),
     path('genres/', views.genres),
+    path('listing/', views.listing),
 ]

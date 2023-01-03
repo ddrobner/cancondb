@@ -4,7 +4,7 @@ from .forms import ArtistSubmission
 
 # Create your views here.
 def genres(request):
-    return HttpResponse("Placeholder")
+    return render(request, 'genres.html')
 
 def submit(request):
     if request.method == 'POST':
@@ -17,5 +17,8 @@ def submit(request):
         form = ArtistSubmission()
     
     return render(request, 'submission.html', {'form': form})
+
+def listing(request):
+    return HttpResponse("Placeholder")
 
         

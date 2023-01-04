@@ -31,19 +31,17 @@ def listing(request):
     return HttpResponse("Placeholder")
 
 def genre_view(request, genre_id):
-    tags = Tag.objects.filter(slug=genre_id).values_list('slug', flat='True')
-    artists = Artist.objects.filter(genres__slug__in=tags)
+    tag = Tag.objects.get(slug=genre_id)
+    artists = Artist.objects.filter(genres__slug=tag.slug)
     names = []
     slugs = []
     for a in artists:
         names.append(a.name)
         slugs.append(a.slug)
-    print(names)
-    print(slugs)
 
     artist_info = zip(names, slugs)
 
-    return render(request, 'genreView.html', {"artists": artist_info})
+    return render(request, 'genreView.html', {"artists": artist_info, "genre_name" : tag.name})
 
 def artist_view(request, artist_id):
     return HttpResponse(str(artist_id))

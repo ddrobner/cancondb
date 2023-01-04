@@ -2,6 +2,7 @@
 
 <!-- Page content-->
 {%block body %}
+    <h3 class="text-center mt-3"> Genre Listing </h3>
     <div class="list-group mt-3">
         {% for tag, slug in genre_data %}
             <a class="list-group-item list-group-item-action" href="/genres/{{ slug }}">{{ tag }}</a>

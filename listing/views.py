@@ -27,7 +27,6 @@ def submit(request):
             artist = form.save()
             artist.user_ip = str(user_ip)
             artist.save()
-            # TODO redirect to new artist page
             return HttpResponseRedirect(f"/artists/{artist.slug}")
     
     else:

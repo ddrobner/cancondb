@@ -7,6 +7,8 @@ from taggit.managers import TaggableManager
 class Artist(models.Model):
     # storing some basic info about the artist in the DB
     name = models.CharField(max_length=50)
+    # link to the artist
+    link = models.URLField()
     # notes in case it's relevant
     notes = models.CharField(max_length=150, blank=True)
     # source that the artist is canadian

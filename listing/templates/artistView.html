@@ -3,14 +3,14 @@
 {% block body%}
 
 <h3 class="text-center mt3"> {{ artist_name }} </h3>
-<div class="container">
+<div class="container list-group mt-3">
     {% for attribute_title, attribute_value in artist %}
         <div class="row">
             <div class="col">
                 {{ attribute_title }}
             </div>
             <div class="col">
-                {{ attribute_value }}
+                {{ attribute_value|urlize }}
             </div>
         </div> 
     {% endfor %}

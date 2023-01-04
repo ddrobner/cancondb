@@ -49,8 +49,12 @@ def artist_view(request, artist_id):
     artist = model_to_dict(Artist.objects.get(slug=artist_id))
     print(artist)
     artist_name = artist["name"]
+    # pop some fields we don't want to show
     artist.pop("name")
-    artist_attributes = [a for a in artist.keys()]
+    artist.pop("slug")
+    artist.pop("id")
+    artist.pop("user_ip")
+    artist_attributes = [Artist._meta.get_field(a).verbose_name for a in artist.keys()]
     artist_values = [v for v in artist.values()]
 
     artist = zip(artist_attributes, artist_values)

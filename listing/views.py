@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from taggit.models import Tag
 
 from .forms import ArtistSubmission
@@ -17,7 +18,7 @@ def submit(request):
         form = ArtistSubmission(request.POST)
         if form.is_valid():
             artist = form.save()
-            return HttpResponse("Successful Submission")
+            return HttpResponseRedirect("/")
     
     else:
         form = ArtistSubmission()

@@ -25,6 +25,7 @@ SECRET_KEY = 'django-insecure-6++p1!rwf@esx!r@n-r14ze1%bwiqoi&g)wh84j!8dcx%oz%ae
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 ALLOWED_HOSTS = []
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'taggit',
     'crispy_forms',
     'crispy_bootstrap5',
+    'captcha',
 ]
 
 MIDDLEWARE = [

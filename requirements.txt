@@ -2,3 +2,4 @@ Django
 django-taggit
 django-crispy-forms
 crispy-bootstrap5
+django-recaptcha

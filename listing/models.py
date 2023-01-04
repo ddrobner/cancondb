@@ -6,16 +6,16 @@ from taggit.managers import TaggableManager
 # Create your models here.
 class Artist(models.Model):
     # storing some basic info about the artist in the DB
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, verbose_name="Artist Name")
     # link to the artist
-    link = models.URLField()
+    link = models.URLField(verbose_name="URL To Artist")
     # notes in case it's relevant
-    notes = models.CharField(max_length=150, blank=True)
+    notes = models.CharField(max_length=150, blank=True, verbose_name="Notes")
     # source that the artist is canadian
     # considering making this optional
-    source = models.URLField()
+    source = models.URLField(verbose_name="Source That The Artist Is Canadian", blank=True)
     # storing genre tags
-    genres = TaggableManager()
+    genres = TaggableManager(verbose_name = "Genres")
     # artist slug
     slug = models.SlugField()
     # IP of user who submitted the artist

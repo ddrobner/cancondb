@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.forms.models import model_to_dict
 from django.http import HttpResponseRedirect
 from taggit.models import Tag
 
@@ -44,7 +45,18 @@ def artist_listing(request):
     return render(request, 'artistListing.html', {"artist_data": artist_data})
 
 def artist_view(request, artist_id):
-    return HttpResponse(str(artist_id))
+
+    artist = model_to_dict(Artist.objects.get(slug=artist_id))
+    print(artist)
+    artist_name = artist["name"]
+    artist.pop("name")
+    artist_attributes = [a for a in artist.keys()]
+    artist_values = [v for v in artist.values()]
+
+    artist = zip(artist_attributes, artist_values)
+
+    return render(request, "artistView.html", {"artist_name": artist_name, "artist": artist})
+    
 
 def genre_view(request, genre_id):
     tag = Tag.objects.get(slug=genre_id)

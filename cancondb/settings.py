@@ -141,3 +141,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # crispy forms config
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+TAGGIT_TAGS_FROM_STRING = 'listing.utils.custom_tag_string'

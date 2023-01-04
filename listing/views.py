@@ -6,11 +6,9 @@ from .forms import ArtistSubmission
 
 # Create your views here.
 def genres(request):
-    tags = list(str(x) for x in Tag.objects.all())
-    #slugs = list(x.slug() for x in Tag.objects.all())
-    sorted_tags =  sorted(tags)
-    sorted_slugs = sorted(Tag.objects.all().values_list("slug", flat=True))
-    genre_data = zip(sorted_tags, sorted_slugs)
+    tags = sorted(list(str(x) for x in Tag.objects.all().values_list("name", flat=True)), key=str.casefold)
+    slugs = sorted(Tag.objects.all().values_list("slug", flat=True), key=str.casefold)
+    genre_data = zip(tags, slugs)
 
     return render(request, 'genres.html', {'genre_data': genre_data})
 
@@ -31,5 +29,8 @@ def listing(request):
 
 def genre_view(request, genre_id):
     return HttpResponse(str(genre_id))
+
+def artist_view(request, artist_id):
+    return HttpResponse(str(artist_id))
 
         

@@ -17,7 +17,7 @@ class Artist(models.Model):
     # storing genre tags
     genres = TaggableManager()
     # artist slug
-    slug = models.SlugField(slugify(name))
+    slug = models.SlugField(default=slugify(name))
 
     # toString method
     def __str__(self):

@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from taggit.models import Tag
 
 from .forms import ArtistSubmission
+from .models import Artist
 
 # Create your views here.
 def genres(request):
@@ -18,6 +19,7 @@ def submit(request):
         form = ArtistSubmission(request.POST)
         if form.is_valid():
             artist = form.save()
+            # TODO redirect to new artist page
             return HttpResponseRedirect("/")
     
     else:
@@ -29,7 +31,19 @@ def listing(request):
     return HttpResponse("Placeholder")
 
 def genre_view(request, genre_id):
-    return HttpResponse(str(genre_id))
+    tags = Tag.objects.filter(slug=genre_id).values_list('slug', flat='True')
+    artists = Artist.objects.filter(genres__slug__in=tags)
+    names = []
+    slugs = []
+    for a in artists:
+        names.append(a.name)
+        slugs.append(a.slug)
+    print(names)
+    print(slugs)
+
+    artist_info = zip(names, slugs)
+
+    return render(request, 'genreView.html', {"artists": artist_info})
 
 def artist_view(request, artist_id):
     return HttpResponse(str(artist_id))

@@ -4,7 +4,7 @@
 
 <div class="list-view mt3">
     {% for artist, slug in artists %}
-        <a href="/artists/{{ slug }}"> {{ artist }} </a> 
+        <a class="list-group-item list-group-item-action" href="/artists/{{ slug }}"> {{ artist }} </a> 
     {% endfor %}
 </div>
 

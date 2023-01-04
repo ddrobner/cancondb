@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.signals import pre_save
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
 
@@ -17,8 +18,14 @@ class Artist(models.Model):
     # storing genre tags
     genres = TaggableManager()
     # artist slug
-    slug = models.SlugField(default=slugify(name))
+    slug = models.SlugField()
+
+    @staticmethod
+    def pre_save(sender, instance, **kwargs):
+        instance.slug = slugify(instance.name)
 
     # toString method
     def __str__(self):
         return self.name
+
+pre_save.connect(Artist.pre_save, Artist)

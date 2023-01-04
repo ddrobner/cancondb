@@ -13,7 +13,7 @@ class Artist(models.Model):
     notes = models.CharField(max_length=150, blank=True, verbose_name="Notes")
     # source that the artist is canadian
     # considering making this optional
-    source = models.URLField(verbose_name="Source That The Artist Is Canadian", blank=True)
+    source = models.URLField(verbose_name="Source That The Artist Is Canadian", blank=True, default="Warning: This artist has no source and may not actually be canadian! Proceed at your own risk.")
     # storing genre tags
     genres = TaggableManager(verbose_name = "Genres")
     # artist slug

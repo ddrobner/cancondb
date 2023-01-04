@@ -14,6 +14,20 @@
             </div>
         </div> 
     {% endfor %}
+    <div class="row">
+        <div class="col">
+            Genres
+        </div>
+        <div class="col">
+            {% for name, slug in genres %}
+                {% if not forloop.last %}
+                    <a href="/genres/{{ slug }}">{{ name }},</a>
+                {% else %}
+                    <a href="/genres/{{ slug }}">{{ name }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock body %}

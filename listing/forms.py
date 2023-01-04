@@ -10,8 +10,8 @@ class ArtistSubmission(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ArtistSubmission, self).__init__(*args, **kwargs)
-        self.fields['genres'].required = False
+        self.fields['notes'].required = False
+        print(self.fields['notes'])
 
     def save(self, commit=True):
-        print(self.fields['genres'])
         return super(ArtistSubmission, self).save(commit=commit)

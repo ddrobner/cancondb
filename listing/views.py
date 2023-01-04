@@ -27,7 +27,7 @@ def submit(request):
             artist = form.save()
             artist.user_ip = str(user_ip)
             artist.save()
-            if artist.source == "":
+            if not artist.source:
                 artist.source = "Warning: This artist has no source and may not actually be Canadian! Proceed at your own risk."
             return HttpResponseRedirect(f"/artists/{artist.slug}")
     
@@ -59,11 +59,15 @@ def artist_view(request, artist_id):
     artist_values = [v for v in artist.values()]
     # format tags
     #TODO really hacky code here, fix up at some point
-    artist_values[3] = ', '.join([t.name for t in artist_values[3]])
+    genre_names = [t.name for t in artist_values[3]]
+    genre_slugs = [t.slug for t in artist_values[3]]
+    genres = zip(genre_names, genre_slugs)
+    artist_values.pop(3)
+    artist_attributes.pop(3)
 
     artist = zip(artist_attributes, artist_values)
 
-    return render(request, "artistView.html", {"artist_name": artist_name, "artist": artist})
+    return render(request, "artistView.html", {"artist_name": artist_name, "artist": artist, "genres": genres})
     
 
 def genre_view(request, genre_id):

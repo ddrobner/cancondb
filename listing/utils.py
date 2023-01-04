@@ -3,5 +3,5 @@ def custom_tag_string(tag_string):
     if not tag_string:
         return []
     if ',' not in tag_string:
-        return [tag_string]
-    return [t.strip() for t in tag_string.split(',')]
+        return [tag_string.title()]
+    return [t.strip().title() for t in tag_string.split(',')]

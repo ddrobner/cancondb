@@ -28,7 +28,7 @@ def submit(request):
             artist.user_ip = str(user_ip)
             artist.save()
             # TODO redirect to new artist page
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect(f"/artists/{artist.slug}")
     
     else:
         form = ArtistSubmission()
@@ -56,6 +56,9 @@ def artist_view(request, artist_id):
     artist.pop("user_ip")
     artist_attributes = [Artist._meta.get_field(a).verbose_name for a in artist.keys()]
     artist_values = [v for v in artist.values()]
+    # format tags
+    #TODO really hacky code here, fix up at some point
+    artist_values[3] = ', '.join([t.name for t in artist_values[3]])
 
     artist = zip(artist_attributes, artist_values)
 

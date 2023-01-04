@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from taggit.managers import TaggableManager
 
 # Create your models here.
@@ -15,6 +16,8 @@ class Artist(models.Model):
     submitted_by = models.EmailField(blank=False)
     # storing genre tags
     genres = TaggableManager()
+    # artist slug
+    slug = models.SlugField(slugify(name))
 
     # toString method
     def __str__(self):

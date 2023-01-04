@@ -17,7 +17,7 @@ class Artist(models.Model):
     # storing genre tags
     genres = TaggableManager(verbose_name = "Genres")
     # artist slug
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
     # IP of user who submitted the artist
     user_ip = models.GenericIPAddressField(default="0.0.0.0")
 

@@ -1,0 +1,19 @@
+{% extends "genericSite.html" %}
+
+{% block body%}
+
+<h3 class="text-center mt3"> {{ artist_name }} </h3>
+<div class="container">
+    {% for attribute_title, attribute_value in artist %}
+        <div class="row">
+            <div class="col">
+                {{ attribute_title }}
+            </div>
+            <div class="col">
+                {{ attribute_value }}
+            </div>
+        </div> 
+    {% endfor %}
+</div>
+
+{% endblock body %}

@@ -27,7 +27,7 @@ def submit(request):
     
     return render(request, 'submission.html', {'form': form})
 
-def listing(request):
+def artist_listing(request):
     return HttpResponse("Placeholder")
 
 def genre_view(request, genre_id):

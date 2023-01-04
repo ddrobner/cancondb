@@ -28,7 +28,16 @@ def submit(request):
     return render(request, 'submission.html', {'form': form})
 
 def artist_listing(request):
-    return HttpResponse("Placeholder")
+    artists = Artist.objects.all()
+    names = sorted(artists.values_list("name", flat="True"), key=str.casefold)
+    slugs = sorted(artists.values_list("slug", flat=True), key=str.casefold)
+
+    artist_data = zip(names, slugs)
+
+    return render(request, 'artistListing.html', {"artist_data": artist_data})
+
+def artist_view(request, artist_id):
+    return HttpResponse(str(artist_id))
 
 def genre_view(request, genre_id):
     tag = Tag.objects.get(slug=genre_id)
@@ -43,7 +52,5 @@ def genre_view(request, genre_id):
 
     return render(request, 'genreView.html', {"artists": artist_info, "genre_name" : tag.name})
 
-def artist_view(request, artist_id):
-    return HttpResponse(str(artist_id))
 
         

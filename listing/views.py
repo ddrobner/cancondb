@@ -27,6 +27,8 @@ def submit(request):
             artist = form.save()
             artist.user_ip = str(user_ip)
             artist.save()
+            if artist.source == "":
+                artist.source = "Warning: This artist has no source and may not actually be Canadian! Proceed at your own risk."
             return HttpResponseRedirect(f"/artists/{artist.slug}")
     
     else:

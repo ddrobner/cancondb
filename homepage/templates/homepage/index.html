@@ -1,8 +1,16 @@
 {% extends "genericSite.html" %}
+{% load static %}
 
 <!-- Page content-->
 {%block body %}
     <h1 class="text-center mt-3"> Canadian Content Database </h1>
     <p> Welcome to the Canadian Artist Database! I created this site because I was struggling to find new Canadian artists for my radio show <a href="https://www.cfrc.ca/in_the_house">In The House</a> on CFRC at Queen's University in Kingston,
         and to help give smaller Canadian artists more recognition. If you're so inclined, you can find the source code on my GitHub <a href="https://github.com/ddrobner/cancondb">here</a>.
+    </p>
+    
+    <h1 class="text-center mt-3"> Featured Artists </h1>
+    <div class="text-center">
+        <img class='img-fluid' src={% static 'assets/time.jpg' %}>
+    </div>
+
 {% endblock body %}

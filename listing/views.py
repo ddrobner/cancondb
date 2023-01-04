@@ -28,6 +28,7 @@ def submit(request):
             artist.save()
             if not artist.source:
                 artist.source = "Warning: This artist has no source and may not actually be Canadian! Proceed at your own risk."
+            artist.save()
             return HttpResponseRedirect(f"/artists/{artist.slug}")
     
     else:

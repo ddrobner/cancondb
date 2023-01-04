@@ -38,7 +38,7 @@ def submit(request):
 
 def artist_listing(request):
     artists = Artist.objects.all()
-    names = sorted(artists.values_list("name", flat="True"), key=str.casefold)
+    names = sorted(artists.values_list("name", flat=True), key=str.casefold)
     slugs = sorted(artists.values_list("slug", flat=True), key=str.casefold)
 
     artist_data = zip(names, slugs)

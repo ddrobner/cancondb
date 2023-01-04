@@ -12,18 +12,17 @@ class Artist(models.Model):
     # source that the artist is canadian
     # considering making this optional
     source = models.URLField()
-    # field for who submitted the artist
-    # not publically viewable however want to prevent abuse
-    submitted_by = models.EmailField(blank=False)
     # storing genre tags
     genres = TaggableManager()
     # artist slug
     slug = models.SlugField()
+    # IP of user who submitted the artist
+    user_ip = models.GenericIPAddressField(default="0.0.0.0")
 
     @staticmethod
     def pre_save(sender, instance, **kwargs):
         instance.slug = slugify(instance.name)
-
+    
     # toString method
     def __str__(self):
         return self.name

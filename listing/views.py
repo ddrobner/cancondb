@@ -17,8 +17,15 @@ def genres(request):
 def submit(request):
     if request.method == 'POST':
         form = ArtistSubmission(request.POST)
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            user_ip = x_forwarded_for.split(',')[0]
+        else:
+            user_ip = request.META.get('REMOTE_ADDR')
         if form.is_valid():
             artist = form.save()
+            artist.user_ip = str(user_ip)
+            artist.save()
             # TODO redirect to new artist page
             return HttpResponseRedirect("/")
     

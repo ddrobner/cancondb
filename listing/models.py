@@ -15,7 +15,7 @@ class Artist(models.Model):
     # considering making this optional
     source = models.URLField(verbose_name="Source That The Artist Is Canadian", blank=True)
     # storing genre tags
-    genres = TaggableManager(verbose_name = "Genres")
+    genres = TaggableManager(verbose_name = "Genres", help_text="A comma separated list of genres")
     # artist slug
     slug = models.SlugField(unique=True)
     # IP of user who submitted the artist
